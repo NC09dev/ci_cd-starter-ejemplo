@@ -1,0 +1,53 @@
+# =====================================================
+# Manifiesto Kubernetes - SOLO PARA ENSENANZA
+# No se ejecuta en clase (requiere cluster K8s)
+# =====================================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-clase-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops-clase
+  template:
+    metadata:
+      labels:
+        app: devops-clase
+    spec:
+      containers:
+      - name: app
+        image: ghcr.io/tu-usuario/devops-clase:v1.0.0
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          periodSeconds: 5
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-clase-service
+spec:
+  selector:
+    app: devops-clase
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: LoadBalancer

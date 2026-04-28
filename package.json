@@ -1,0 +1,16 @@
+{
+  "name": "devops-clase-utadeo",
+  "version": "1.0.0",
+  "description": "App demo para clase DevOps - Arquitectura de Software Utadeo",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test tests/app.test.js",
+    "lint": "echo 'Lint OK (placeholder - en produccion usariamos ESLint)'"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "author": "Clase DevOps Utadeo",
+  "license": "MIT"
+}

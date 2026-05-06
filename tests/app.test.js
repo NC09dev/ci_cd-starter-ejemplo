@@ -41,7 +41,7 @@ test('GET / devuelve 200 y un mensaje', async () => {
 
 test('GET /health devuelve 200 con status ok', async () => {
   const res = await hacerPeticion('/health');
-  assert.strictEqual(res.statusCode, 200);
+  assert.strictEqual(res.statusCode, 200); //Bug Arreglao
   const body = JSON.parse(res.body);
   assert.strictEqual(body.status, 'ok');
 });
